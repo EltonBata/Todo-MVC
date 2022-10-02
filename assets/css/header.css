@@ -1,0 +1,21 @@
+body{
+    overflow-y: hidden;
+}
+nav a{
+    color: white !important;
+    font-size: 19px;
+}
+
+.navbar, .head{
+    background-color: #3398ac !important;
+    color: white;
+}
+
+.menu{
+    height: 200px;
+}
+
+label{
+    color: grey;
+}
+
