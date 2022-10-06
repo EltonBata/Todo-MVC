@@ -21,39 +21,53 @@ class Todo
         return $count;
     }
 
-    public function listTodo($params = [])
+    public function listTodo($username, $label)
     {
-        $sql = $this->link->query("SELECT * FROM todo WHERE username = ? AND status = ?");
-        $sql->execute($params);
+        $sql = $this->link->query("SELECT * FROM my_todo WHERE username = '$username' AND label = '$label' ORDER BY id DESC");
+
+        if ($label == null) {
+            $sql = $this->link->query("SELECT * FROM my_todo WHERE username = '$username' ORDER BY id DESC");
+        } else {
+            $sql = $this->link->query("SELECT * FROM my_todo WHERE username = '$username' AND label = '$label' ORDER BY id DESC");
+        }
+
+        $sql->execute();
         $dados = $sql->fetchAll(PDO::FETCH_OBJ);
+
+        return $dados;
+    }
+
+    public function listTodoId($id){
+        $sql = $this->link->query("SELECT * FROM my_todo WHERE id = '$id' LIMIT 1");
+        $sql->execute();
+
+        $dados = $sql->fetch(PDO::FETCH_OBJ);
 
         return $dados;
     }
 
     public function countTodo($params)
     {
-        $sql = $this->link->query("SELECT  COUNT(*) AS total FROM todo WHERE username = ? AND status = ?");
+        $sql = $this->link->query("SELECT  COUNT(*) AS total FROM my_todo WHERE username = ? AND status = ?");
         $sql->execute($params);
         $count = $sql->fetchAll(PDO::FETCH_OBJ);
 
         return $count;
     }
 
-    public function editTodo($params = [], $data = [])
+    public function editTodo($id, $params = [])
     {
-        $x=0;
-        foreach ($data as $key => $value) {
-            $sql = $this->link->prepare("UPDATE todo SET $key = $value WHERE username = ? AND id = ?");
-            $sql->execute($params);
-            $x++;
-        }
 
-        return $x;
+        $sql = $this->link->prepare("UPDATE my_todo SET title = ?, description = ?, due_date = ?, label = ?  WHERE id = '$id'");
+        $sql->execute($params);
+
+        $count = $sql->rowCount();
     }
 
-    public function deleteTodo($params = []){
-        $sql = $this->link->prepare("DELETE FROM todo WHERE username = ? AND status = ?");
-        $sql->execute($params);
+    public function deleteTodo($id)
+    {
+        $sql = $this->link->prepare("DELETE FROM my_todo WHERE id = '$id'");
+        $sql->execute();
         $count = $sql->rowCount();
 
         return $count;

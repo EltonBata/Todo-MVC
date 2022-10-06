@@ -27,8 +27,9 @@
 
         if ($todo->createTodo($params) > 0) {
 
-            $_SESSION['msg'] = "Todo criado com sucesso!";
-            header("location: ../views/todo.php");
+            $_SESSION['success'] = "Todo criado com sucesso!";
+            header('location: ../views/createTodo.php');
+           
         } else {
             $_SESSION['error'] = "Todo nao  criado";
         }

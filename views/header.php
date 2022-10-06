@@ -8,34 +8,24 @@
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/header.css">
-    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.js"></script>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-sm bg-dark shadow">
-        <a href="#" class="navbar-brand ms-3 m-1 h3 ">Todo Maker</a>
+    <nav class="navbar navbar-expand-sm bg-dark shadow ">
+        <a href="./todo.php" class="navbar-brand ms-3 m-1 h3 ">Todo Maker</a>
+
+        <ul class="navbar-nav justify-content-end w-100 me-3">
+            <li class="nav-item">
+                <a href="../index.php" class="nav-link">Logout</a>
+            </li>
+        </ul>
 
     </nav>
 
-    <div class="container d-flex my-3">
-        <nav class="navbar bg-dark col-lg-2 menu">
-
-            <div class="container-fluid ms-4">
-                <!-- Links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-book"></i>Inbox</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Read Later</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Important</a>
-                    </li>
-                </ul>
-            </div>
-
-        </nav>
+    
+        
 
        

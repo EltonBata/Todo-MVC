@@ -1,21 +1,35 @@
-body{
-    overflow-y: hidden;
-}
+
 nav a{
     color: white !important;
     font-size: 19px;
 }
 
 .navbar, .head{
-    background-color: #3398ac !important;
+    background-color: #315259!important;
     color: white;
 }
 
 .menu{
-    height: 200px;
+    height: 400px;
+}
+.menu ul{
+    position: absolute;
+    top: 0;
 }
 
 label{
     color: grey;
+}
+
+.alert{
+    position: absolute;
+    top: 1px;
+    left: 0;
+    right: 0;
+    
+}
+
+ .nav-link:hover {
+    border-bottom: 2px solid white !important;
 }
 

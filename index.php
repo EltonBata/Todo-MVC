@@ -34,7 +34,7 @@ session_start();
                 <div class="alert alert-danger alert-dismissible">
                     <button class="btn-close" data-bs-dismiss='alert'></button>
                     <?php echo $_SESSION['error'];
-                    session_destroy(); ?>
+                    session_unset(); ?>
                 </div>
 
             <?php } ?>

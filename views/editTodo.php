@@ -1,27 +1,23 @@
 <?php
 session_start();
+require_once '../models/Todo.php';
 include_once './header.php';
+
+    $todo = new Todo();
+
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $label = $_GET['label'];
+        $dados = $todo->listTodoId($id);
+    }
 
 ?>
 
 
 <div class="container mt-3 p-0">
 
-    <?php if (isset($_SESSION['error'])) { ?>
-        <div class="alert alert-danger alert-dismissible w-25 mx-auto float-end">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <?php echo $_SESSION['error']; ?>
-        </div>
-    <?php }
-    if (isset($_SESSION['success'])) { ?>
-        <div class="alert alert-success alert-dismissible w-25 mx-auto float-end">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <?php echo $_SESSION['success']; ?>
-        </div>
-    <?php } ?>
-
     <div class="container-fluid m-0 head clearfix border border-bottom-2">
-        <h3 class="float-start my-3">Create Todo</h3>
+        <h3 class="float-start my-3">Edit Todo</h3>
 
     </div>
 
@@ -58,29 +54,32 @@ include_once './header.php';
 
         <div class="container my-3 p-0 form">
 
-            <form action="../controllers/createTodoController.php" method="POST">
+            <form action="../controllers/editTodoController.php" method="POST">
+                <input type="hidden" name="id" value= "<?php echo $id ?>">
+                <input type="hidden" name="label" value= "<?php echo $label ?>">
+
                 <div class="container">
                     <label for="" class="form-label">Title:</label>
-                    <input type="text" class="form-control" name="title" required>
+                    <input type="text" class="form-control" name="title" required value="<?php echo $dados->title ?>">
                 </div>
 
                 <div class="container mt-2">
                     <label for="" class="form-label">Description:</label>
-                    <textarea name="description" class="form-control"></textarea>
+                    <textarea name="description" class="form-control"><?php echo $dados->description ?></textarea>
                 </div>
 
                 <div class="container mt-2">
                     <label for="" class="form-label">Due Date:</label>
-                    <input type="date" class="form-control" name="date">
+                    <input type="date" class="form-control" name="date"  value="<?php echo $dados->due_date ?>">
                 </div>
 
                 <div class="container mt-2">
                     <label for="" class="form-label">Label Under:</label>
-                    <select name="label" id="" class="form-select">
+                    <select name="label" id="" class="form-select"   value="<?php echo $dados->label ?>">
                         <option value=""></option>
-                        <option value="inbox">Inbox</option>
-                        <option value="read_later">Read Later</option>
-                        <option value="important">Important</option>
+                        <option value="inbox" <?php if($label == 'inbox'){ ?>selected <?php } ?> >Inbox</option>
+                        <option value="read_later" <?php if($label == 'read_later'){ ?>selected <?php } ?> >Read Later</option>
+                        <option value="important" <?php if($label == 'important'){ ?>selected <?php } ?> >Important</option>
                     </select>
                 </div>
 
