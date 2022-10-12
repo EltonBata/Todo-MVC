@@ -15,20 +15,17 @@ session_start();
     <link rel="stylesheet" href="./assets/css/login.css">
     <script src="./assets/js/bootstrap.min.js"></script>
     <script src="./assets/js/jquery.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Peralta">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-sm bg-dark shadow">
-        <a href="#" class="navbar-brand ms-3 m-1 h3 ">Todo Maker</a>
-
-    </nav>
-
-
     <div class="container-fluid border">
 
-        <div class="form w-50 rounded-2 p-5 border">
-            <h2 class="text-center border-bottom border-3 mb-3">Login</h2>
+        <h1 class="text-center mt-5 mb-3">Todo Maker</h1>
+
+        <div class="form w-50 rounded-2 p-5 border mx-auto">
+            <h2 class="text-center border-bottom border-3 pb-3">Login</h2>
             <?php if (isset($_SESSION['error'])) { ?>
 
                 <div class="alert alert-danger alert-dismissible">
@@ -39,7 +36,7 @@ session_start();
 
             <?php } ?>
 
-            <form action="./controllers/loginController.php" method="POST">
+            <form class="mt-3" action="./controllers/loginController.php" method="POST">
                 <div class="container">
                     <label for="" class="form-label">Username:</label>
                     <input type="text" class="form-control" name="username" required>

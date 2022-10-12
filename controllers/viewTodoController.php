@@ -10,6 +10,6 @@ if (isset($_GET['label'])) {
     $label = $_GET['label'];
 }
 
-$dados = $todo->listTodo($_SESSION['user'], $label);
+$dados = $todo->listTodo($_SESSION['username'], $label);
 
 ?>

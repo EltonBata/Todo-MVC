@@ -9,10 +9,8 @@ body{
 }
 
 .container-fluid{
-    height: calc(100vh - 60px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
+   
 }
 
 .form{
@@ -21,4 +19,7 @@ body{
 
 .border1{
     border-color: red !important;
+}
+h1{
+    font-family: 'Peralta';
 }

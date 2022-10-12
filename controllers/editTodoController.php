@@ -14,13 +14,14 @@ if ($_SERVER['REQUEST'] = 'POST') {
     $params = [
         $_POST['title'],
         $_POST['description'],
-        date('Y-m-d', $date),
-        $_POST['label']
+        date('Y-m-d h:i:sa', $date),
+        $_POST['label'],
+        $_POST['progress']
     ];
 
-    if ($todo->editTodo($id, $params)) {
+    if ($todo->editTodo($id, $params) == 1) {
 
-        $_SESSION['msg'] = 'Todo Updated';
+        $_SESSION['success'] = 'Todo Updated';
         header("location: ../views/todo.php?label=$label");
     } else {
         $_SESSION['erro'] = 'Error on Update';

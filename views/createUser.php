@@ -17,19 +17,10 @@ session_start();
 
 <body>
 
-    <nav class="navbar navbar-expand-sm bg-dark shadow">
-        <a href="#" class="navbar-brand ms-3 m-1 h3 ">Todo Maker</a>
+ 
 
-        <ul class="w-100 clearfix">
-            <li class="nav-item float-end me-3">
-                <a href="../index.php" class="nav-link">Login</a>
-            </li>
-        </ul>
-
-    </nav>
-
-    <div class="container-fluid border">
-        <div class="form w-50 rounded-2 p-2 border">
+    <div class="container-fluid border ">
+        <div class="form w-50 rounded-2 p-2 border mx-auto mt-5">
             <h2 class="text-center border-bottom border-3 mb-3">Nova Conta</h2>
             <?php if (isset($_SESSION['error'])) { ?>
 

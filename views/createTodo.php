@@ -7,25 +7,13 @@ include_once './header.php';
 
 <div class="container mt-3 p-0">
 
-    <?php if (isset($_SESSION['error'])) { ?>
-        <div class="alert alert-danger alert-dismissible w-25 mx-auto float-end">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <?php echo $_SESSION['error']; ?>
-        </div>
-    <?php }
-    if (isset($_SESSION['success'])) { ?>
-        <div class="alert alert-success alert-dismissible w-25 mx-auto float-end">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <?php echo $_SESSION['success']; ?>
-        </div>
-    <?php } ?>
 
     <div class="container-fluid m-0 head clearfix border border-bottom-2">
         <h3 class="float-start my-3">Create Todo</h3>
 
     </div>
 
-    <div class="container-fluid p-0 d-flex">
+    <div class="container-fluid p-0 d-flex main">
 
         <nav class="navbar bg-dark col-lg-2 menu">
 
@@ -71,7 +59,7 @@ include_once './header.php';
 
                 <div class="container mt-2">
                     <label for="" class="form-label">Due Date:</label>
-                    <input type="date" class="form-control" name="date">
+                    <input type="datetime-local" class="form-control" name="date">
                 </div>
 
                 <div class="container mt-2">
@@ -86,7 +74,7 @@ include_once './header.php';
 
 
                 <div class="container my-3">
-                    <button type="submit" name="entrar" class="btn btn-success">Criar</button>
+                    <button type="submit" name="entrar" class="btn btn-success">Create</button>
                 </div>
 
             </form>

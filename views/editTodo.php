@@ -52,7 +52,7 @@ include_once './header.php';
 
 
 
-        <div class="container my-3 p-0 form">
+        <div class="container my-3 p-0 form tabela">
 
             <form action="../controllers/editTodoController.php" method="POST">
                 <input type="hidden" name="id" value= "<?php echo $id ?>">
@@ -70,7 +70,7 @@ include_once './header.php';
 
                 <div class="container mt-2">
                     <label for="" class="form-label">Due Date:</label>
-                    <input type="date" class="form-control" name="date"  value="<?php echo $dados->due_date ?>">
+                    <input type="datetime-local" class="form-control" name="date"  value="<?php echo $dados->due_date ?>">
                 </div>
 
                 <div class="container mt-2">
@@ -83,9 +83,15 @@ include_once './header.php';
                     </select>
                 </div>
 
+                <div class="container mt-2">
+                    <label for="" class="form-label">Progress</label>
+                    <input type="range" name="progress" min="0" max= "100" value="<?php echo $dados->progress ?>" class="form-range" oninput="myFunc()">
+                    <p class="range-value"><?php echo $dados->progress ?>%</p>
+                </div>
+
 
                 <div class="container my-3">
-                    <button type="submit" name="entrar" class="btn btn-success">Criar</button>
+                    <button type="submit" name="entrar" class="btn btn-success">Update</button>
                 </div>
 
             </form>
@@ -94,3 +100,8 @@ include_once './header.php';
         </div>
 
     </div>
+
+    <script src="../assets/js/editTodo.js"></script>
+
+
+    <?php include_once './foot.php'; ?>

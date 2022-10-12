@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST'] = 'POST') {
 
 
     if ($user->login($username, $password)) {
-        $_SESSION['user'] = $_POST['username'];
+        $_SESSION['username'] = $_POST['username'];
         header("location: ../views/todo.php");
     } else {
         $_SESSION['error'] = "Usuario ou Senha Invalidos";

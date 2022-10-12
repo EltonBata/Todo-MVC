@@ -14,7 +14,7 @@ class Todo
 
     public function createTodo($params = [])
     {
-        $sql = $this->link->prepare("INSERT INTO my_todo (username, title, description, due_date, created_date, label) VALUES (?,?,?,?,?,?)");
+        $sql = $this->link->prepare("INSERT INTO my_todo (username, title, description, due_date, created_date, label, progress) VALUES (?,?,?,?,?,?,1)");
         $sql->execute($params);
         $count = $sql->rowCount();
 
@@ -58,10 +58,12 @@ class Todo
     public function editTodo($id, $params = [])
     {
 
-        $sql = $this->link->prepare("UPDATE my_todo SET title = ?, description = ?, due_date = ?, label = ?  WHERE id = '$id'");
+        $sql = $this->link->prepare("UPDATE my_todo SET title = ?, description = ?, due_date = ?, label = ?, progress = ?  WHERE id = '$id'");
         $sql->execute($params);
 
         $count = $sql->rowCount();
+
+        return $count;
     }
 
     public function deleteTodo($id)
@@ -71,5 +73,10 @@ class Todo
         $count = $sql->rowCount();
 
         return $count;
+    }
+
+    public function validarPassword($password){
+
+        $padrao1 = "/^[a-z]+$/";
     }
 }

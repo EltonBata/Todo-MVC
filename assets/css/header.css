@@ -1,4 +1,6 @@
-
+body{
+    overflow: hidden;
+}
 nav a{
     color: white !important;
     font-size: 19px;
@@ -9,9 +11,7 @@ nav a{
     color: white;
 }
 
-.menu{
-    height: 400px;
-}
+
 .menu ul{
     position: absolute;
     top: 0;
@@ -31,5 +31,10 @@ label{
 
  .nav-link:hover {
     border-bottom: 2px solid white !important;
+}
+
+.tabela{
+    overflow-y: auto;
+   height: 400px;
 }
 

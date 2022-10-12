@@ -2,6 +2,7 @@
 
 include_once './header.php';
 require_once '../controllers/viewTodoController.php';
+date_default_timezone_set('Africa/Maputo');
 ?>
 
 
@@ -14,12 +15,15 @@ require_once '../controllers/viewTodoController.php';
             <?php echo $_SESSION['error']; ?>
         </div>
     <?php }
-    if (isset($_SESSION['msg'])) { ?>
+    if (isset($_SESSION['success'])) { ?>
         <div class="alert alert-success alert-dismissible w-25 mx-auto float-end">
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <?php echo $_SESSION['msg']; ?>
+            <?php echo $_SESSION['success']; ?>
         </div>
-    <?php } ?>
+    <?php }
+    unset($_SESSION['error']);
+    unset($_SESSION['success']);
+    ?>
 
 
     <div class="container-fluid m-0 head clearfix border border-bottom-2">
@@ -27,7 +31,7 @@ require_once '../controllers/viewTodoController.php';
         <a href="./createTodo.php" class="btn-sm btn btn-success float-end my-3 border-white">Create Todo</a>
     </div>
 
-    <div class="container-fluid p-0 d-flex">
+    <div class="container-fluid p-0 d-flex main border">
 
         <nav class="navbar bg-dark col-lg-2 menu">
 
@@ -52,7 +56,24 @@ require_once '../controllers/viewTodoController.php';
 
         <div class="container my-3 p-0 tabela col-lg-10">
 
-            <h3 class="text-center text-muted"><?php if(isset($_GET['label'])){ echo $_GET['label']; }else{ echo ""; } ?></h3>
+            <h3 class="text-center text-muted">
+                <?php
+                if (isset($_GET['label'])) {
+                    $label = $_GET['label'];
+                    if ($label == 'inbox') {
+                        echo "Inbox";
+                    } else {
+                        if ($label == 'read_later') {
+                            echo 'Read Later';
+                        } else {
+                            echo 'Important';
+                        }
+                    }
+                } else {
+                    echo "All Todos";
+                }
+                ?>
+            </h3>
             <table class="table table-striped ">
                 <thead class="text-muted">
                     <th>Title</th>
@@ -74,14 +95,15 @@ require_once '../controllers/viewTodoController.php';
                             $today = strtotime('now');
                             $due = strtotime($value->due_date);
                             $time_left = $due - $today;
+                               
 
-                            if (date('d', $time_left) <= 1) {
-                                $time_left = round($time_left / 3600) . ' hours';
+                            if ($time_left > 0) {
+                                if (date('d', $time_left) <= 1) {
+                                    $time_left = date('h:i', $time_left) . ' hours';
+                                } else {
+                                    $time_left = date('d', $time_left) . " days left";
+                                }
                             } else {
-                                $time_left = date('d', $time_left) . " days left";
-                            }
-
-                            if ($today > $due) {
                                 $time_left = "Expired";
                             }
                     ?>
