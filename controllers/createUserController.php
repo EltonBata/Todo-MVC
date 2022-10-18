@@ -16,19 +16,22 @@ if ($_SERVER['REQUEST'] = 'POST') {
     ];
 
     if ($user->verifyUser($_POST['username']) == 0) {
-        if ($_POST['password'] == $_POST['re-password']) {
+        if ($_POST['password'] == $_POST['re_password']) {
             if ($user->addUser($dados) == 1) {
                 $_SESSION['user'] = $_POST['username'];
                 header("location: ../views/todo.php");
+                exit();
             } else {
                 $_SESSION['error'] = "Usuario nao registrado";
             }
         }else{
             $_SESSION['error'] = "Digitou passwords diferentes";
-            header("location: ../views/createUser.php");
+            // header("location: ../index.php");
+            exit();
         }
     } else {
         $_SESSION['error'] = "Username ja existe";
-        header("location: ../views/createUser.php");
+        // header("location: ../index.php");
+        exit();
     }
 }
